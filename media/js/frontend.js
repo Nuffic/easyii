@@ -8,4 +8,4 @@ $(function(){
         checkbox.switcher('setDisabled', true);
         location.href = checkbox.attr('data-link') + '/' + (checkbox.is(':checked') ? 1 : 0);
     });;
-});
+})(jQuery);
