@@ -29,7 +29,7 @@ class Setting extends \yii\easyii\components\ActiveRecord
             ['name',  'match', 'pattern' => '/^[a-zA-Z][\w_-]*$/'],
             ['name', 'unique'],
             ['visibility', 'number', 'integerOnly' => true],
-	    [['value'], 'safe],
+	    [['value'], 'safe'],
         ];
     }
 
