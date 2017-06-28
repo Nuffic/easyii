@@ -24,11 +24,12 @@ class Setting extends \yii\easyii\components\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'title', 'value'], 'required'],
+            [['name', 'title'], 'required'],
             [['name', 'title', 'value'], 'trim'],
             ['name',  'match', 'pattern' => '/^[a-zA-Z][\w_-]*$/'],
             ['name', 'unique'],
-            ['visibility', 'number', 'integerOnly' => true]
+            ['visibility', 'number', 'integerOnly' => true],
+	    [['value'], 'safe],
         ];
     }
 
