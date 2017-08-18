@@ -40,11 +40,14 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface
         $this->setModules($modules);
 
         if (Yii::$app instanceof \yii\web\Application) {
-            define('IS_ROOT', !Yii::$app->user->isGuest && Yii::$app->user->identity->isRoot());
-            define('LIVE_EDIT', !Yii::$app->user->isGuest && Yii::$app->session->get('easyii_live_edit'));
+            if (!defined('IS_ROOT')) {
+                define('IS_ROOT', !Yii::$app->user->isGuest && Yii::$app->user->identity->isRoot());
+            }
+            if (!defined('LIVE_EDIT')) {
+                define('LIVE_EDIT', !Yii::$app->user->isGuest && Yii::$app->session->get('easyii_live_edit'));
+            }
         }
     }
-
 
     public function bootstrap($app)
     {
