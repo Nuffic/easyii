@@ -7,7 +7,7 @@ jQuery(function($){
     $('#easyii-navbar .switcher').on('click', function () {
        var checkbox = $(this).find('input');
        checkbox.switcher('setDisabled', true);
-       var checked = checkbox.is(':checked') ? 1 : 0;
-       location.href = checkbox.attr('data-link') + checked + '/';
+       var url = checkbox.is(':checked') ? checkbox.attr('data-on-link') : checkbox.attr('data-off-link');
+       location.href = url;
     });
 });
