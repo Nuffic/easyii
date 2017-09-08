@@ -32,7 +32,7 @@ class Text extends API
         if(($text = $this->findText($id_slug)) === null){
             return $this->notFound($id_slug);
         }
-        return LIVE_EDIT ? API::liveEdit($text['text'], Url::to(['/admin/text/a/edit/', 'id' => $text['text_id']])) : $text['text'];
+        return LIVE_EDIT ? API::liveEdit($text['text'], Url::to(['/admin/text/text-block/edit/', 'id' => $text['text_id']])) : $text['text'];
     }
 
     private function findText($id_slug)
@@ -50,7 +50,7 @@ class Text extends API
         $text = '';
 
         if(!Yii::$app->user->isGuest && preg_match(TextModel::$SLUG_PATTERN, $id_slug)){
-            $text = Html::a(Yii::t('easyii/text/api', 'Create text'), ['/admin/text/a/create', 'slug' => $id_slug], ['target' => '_blank']);
+            $text = Html::a(Yii::t('easyii/text/api', 'Create text'), ['/admin/text/text-block/create', 'slug' => $id_slug], ['target' => '_blank']);
         }
 
         return $text;
