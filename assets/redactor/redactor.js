@@ -1251,7 +1251,7 @@
 			// blur callback
 			this.$editor.on('blur.redactor', $.proxy(function(e)
 			{
-				if (!$(clickedElement).hasClass('redactor_toolbar') && $(clickedElement).parents('.redactor_toolbar').size() == 0)
+				if (!$(clickedElement).hasClass('redactor_toolbar') && $(clickedElement).parents('.redactor_toolbar').length == 0)
 				{
 					this.selectall = false;
 					if ($.isFunction(this.opts.blurCallback)) this.callback('blur', e);
@@ -1562,8 +1562,8 @@
 								var listCurrentText = $.trim($(listCurrent).text());
 								if (listText == ''
 									&& listCurrentText == ''
-									&& $(listCurrent).next('li').size() == 0
-									&& $(listCurrent).parents('li').size() == 0)
+									&& $(listCurrent).next('li').length == 0
+									&& $(listCurrent).parents('li').length == 0)
 								{
 									this.bufferSet();
 
@@ -1713,7 +1713,7 @@
 		{
 			// remove empty list in table
 			if (parent && current && parent.parentNode.tagName == 'TD'
-				&& parent.tagName == 'UL' && current.tagName == 'LI' && $(parent).children('li').size() == 1)
+				&& parent.tagName == 'UL' && current.tagName == 'LI' && $(parent).children('li').length == 1)
 			{
 				var text = $(current).text().replace(/[\u200B-\u200D\uFEFF]/g, '');
 				if (text == '')
@@ -2862,7 +2862,7 @@
 			var btn = this.buttonBuild(key, { title: title, callback: callback, dropdown: dropdown }, true);
 			var $btn = this.buttonGet(afterkey);
 
-			if ($btn.size() !== 0) $btn.parent().after($('<li>').append(btn));
+			if ($btn.length !== 0) $btn.parent().after($('<li>').append(btn));
 			else this.$toolbar.append($('<li>').append(btn));
 
 			return btn;
@@ -2873,7 +2873,7 @@
 			var btn = this.buttonBuild(key, { title: title, callback: callback, dropdown: dropdown }, true);
 			var $btn = this.buttonGet(beforekey);
 
-			if ($btn.size() !== 0) $btn.parent().before($('<li>').append(btn));
+			if ($btn.length !== 0) $btn.parent().before($('<li>').append(btn));
 			else this.$toolbar.append($('<li>').append(btn));
 
 			return btn;
@@ -3047,7 +3047,7 @@
 			var parent = this.getParent();
 			var $list = $(parent).closest('ol, ul');
 
-			if (!this.isParentRedactor($list) && $list.size() != 0)
+			if (!this.isParentRedactor($list) && $list.length != 0)
 			{
 				$list = false;
 			}
@@ -3165,7 +3165,7 @@
 					}
 				}
 
-				if (firstParent.size() != 0)
+				if (firstParent.length != 0)
 				{
 					$list.wrapAll('<td>');
 				}
@@ -3227,10 +3227,10 @@
 						if (s.tagName == 'LI')
 						{
 							var $prev = $(s).prev();
-							if ($prev.size() != 0 && $prev[0].tagName == 'LI')
+							if ($prev.length != 0 && $prev[0].tagName == 'LI')
 							{
 								var $childList = $prev.children('ul, ol');
-								if ($childList.size() == 0)
+								if ($childList.length == 0)
 								{
 									$prev.append($('<' + listTag + '>').append(s));
 								}
@@ -3344,7 +3344,7 @@
 			if (li && li.tagName == 'LI')
 			{
 				var $parent = $(li).parent().parent();
-				if ($parent.size() != 0 && $parent[0].tagName == 'LI')
+				if ($parent.length != 0 && $parent[0].tagName == 'LI')
 				{
 					$parent.after(li);
 				}
@@ -4024,7 +4024,7 @@
 					if (tag === 'p')
 					{
 						if ((node.tagName === 'P'
-						&& parent.size() != 0
+						&& parent.length != 0
 						&& parent[0].tagName === 'BLOCKQUOTE')
 						||
 						node.tagName === 'BLOCKQUOTE')
@@ -4154,7 +4154,7 @@
 							// from blockquote
 							if (blockquote[0].tagName == 'BLOCKQUOTE')
 							{
-								var count = $(blockquote).children('p').size();
+								var count = $(blockquote).children('p').length;
 
 								// one
 								if (count == 1)
@@ -4288,7 +4288,7 @@
 					$(wrapper).html(html);
 					this.selectionElement(wrapper);
 					var next = $(wrapper).next();
-					if (next.size() != 0 && next[0].tagName === 'BR')
+					if (next.length != 0 && next[0].tagName === 'BR')
 					{
 						next.remove();
 					}
@@ -5412,7 +5412,7 @@
 				return;
 			}
 
-			if ($link.size() == 0 || $link[0].tagName !== 'A') return;
+			if ($link.length == 0 || $link[0].tagName !== 'A') return;
 
 			var pos = $link.offset();
 			if (this.opts.iframe)
@@ -5730,7 +5730,7 @@
 
 			$.each(nodes, $.proxy(function(i,node)
 			{
-				if (this.opts.iframe === false && $(node).parents('div.redactor_editor').size() == 0) return false;
+				if (this.opts.iframe === false && $(node).parents('div.redactor_editor').length == 0) return false;
 				if (this.nodeTestBlocks(node)) newnodes.push(node);
 
 			}, this));
@@ -5777,7 +5777,7 @@
 
 			$.each(nodes, $.proxy(function(i,node)
 			{
-				if (this.opts.iframe === false && $(node).parents('div.redactor_editor').size() == 0) return false;
+				if (this.opts.iframe === false && $(node).parents('div.redactor_editor').length == 0) return false;
 
 				if (typeof tag === 'undefined')
 				{
@@ -6109,7 +6109,7 @@
 		{
 			var $table = $(this.getParent()).closest('table');
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6123,7 +6123,7 @@
 
 
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6149,7 +6149,7 @@
 			var $table = $(parent).closest('table');
 
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6182,11 +6182,11 @@
 		{
 			var $table = $(this.getParent()).closest('table');
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
-			if ($table.find('thead').size() !== 0) this.tableDeleteHead();
+			if ($table.find('thead').length !== 0) this.tableDeleteHead();
 			else
 			{
 				var tr = $table.find('tr').first().clone();
@@ -6204,7 +6204,7 @@
 			if (!this.isParentRedactor($table)) return false;
 			var $thead = $table.find('thead');
 
-			if ($thead.size() == 0) return false;
+			if ($thead.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6231,7 +6231,7 @@
 		{
 			var $table = $(this.getParent()).closest('table');
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6250,7 +6250,7 @@
 			var $table = $(parent).closest('table');
 
 			if (!this.isParentRedactor($table)) return false;
-			if ($table.size() == 0) return false;
+			if ($table.length == 0) return false;
 
 			this.bufferSet();
 
@@ -6592,7 +6592,7 @@
 				this.execCommand('inserthtml', link, false);
 
 				var linkmarker = $(this.$editor.find('a#filelink-marker'));
-				if (linkmarker.size() != 0) linkmarker.removeAttr('id');
+				if (linkmarker.length != 0) linkmarker.removeAttr('id');
 				else linkmarker = false;
 
 				this.sync();
@@ -6919,13 +6919,13 @@
 		},
 		imageResizeHide: function(e)
 		{
-			if (e !== false && $(e.target).parent().size() != 0 && $(e.target).parent()[0].id === 'redactor-image-box')
+			if (e !== false && $(e.target).parent().length != 0 && $(e.target).parent()[0].id === 'redactor-image-box')
 			{
 				return false;
 			}
 
 			var imageBox = this.$editor.find('#redactor-image-box');
-			if (imageBox.size() == 0)
+			if (imageBox.length == 0)
 			{
 				return false;
 			}
@@ -6981,7 +6981,7 @@
 
 			$image.on('click', $.proxy(function(e)
 			{
-				if (this.$editor.find('#redactor-image-box').size() != 0)
+				if (this.$editor.find('#redactor-image-box').length != 0)
 				{
 					return false;
 				}
@@ -7166,7 +7166,7 @@
 			var img = '<img id="image-marker" src="' + $(e.target).attr('rel') + '" alt="' + $(e.target).attr('title') + '" />';
 
 			var parent = this.getParent();
-			if (this.opts.paragraphy && $(parent).closest('li').size() == 0) img = '<p>' + img + '</p>';
+			if (this.opts.paragraphy && $(parent).closest('li').length == 0) img = '<p>' + img + '</p>';
 
 			this.imageInsert(img, true);
 		},
@@ -7200,7 +7200,7 @@
 					html = '<img id="image-marker" src="' + json.filelink + '" />';
 
 					var parent = this.getParent();
-					if (this.opts.paragraphy && $(parent).closest('li').size() == 0)
+					if (this.opts.paragraphy && $(parent).closest('li').length == 0)
 					{
 						html = '<p>' + html + '</p>';
 					}
@@ -7230,7 +7230,7 @@
 		// PROGRESS BAR
 		buildProgressBar: function()
 		{
-			if ($('#redactor-progress').size() != 0) return;
+			if ($('#redactor-progress').length != 0) return;
 
 			this.$progressBar = $('<div id="redactor-progress"><span></span></div>');
 			$(document.body).append(this.$progressBar);
@@ -7470,7 +7470,7 @@
 		modalSetButtonsWidth: function()
 		{
 			var buttons = this.$redactorModal.find('footer button').not('.redactor_modal_btn_hidden');
-			var buttonsSize = buttons.size();
+			var buttonsSize = buttons.length;
 			if (buttonsSize > 0)
 			{
 				$(buttons).css('width', (this.$redactorModalWidth/buttonsSize) + 'px')

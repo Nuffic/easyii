@@ -1,5 +1,8 @@
 #Changelog
 
+###0.8.1
+* Redactor.js updated to work with jQuery 3.* (alexeevdv)
+
 ###0.8.0
 * Articles module added
 * FAQ module added
